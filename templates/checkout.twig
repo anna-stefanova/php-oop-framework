@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block menu %}
+    <div id="menu" class="menu">
+        <ul>
+            {% for name, href in content.menu %}
+                <li><a href="{{ href }}">{{ name }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+{% endblock %}
+{% block cart %}
+    <div class="cart"><a href="index.php?c=cart&act=cart">Корзина</a></div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <h3>Ваш заказ</h3>
+        <p style="color: red">{{ content.message }}</p>
+        {% set summary = 0 %}
+
+    </div>
+{% endblock %}

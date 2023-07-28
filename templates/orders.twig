@@ -1,0 +1,45 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block menu %}
+    <div id="menu" class="menu">
+        <ul>
+            {% for name, href in content.menu %}
+                <li><a href="{{ href }}">{{ name }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+{% endblock %}
+{% block cart %}
+    <div class="cart"><a href="index.php?c=cart&act=cart">Корзина</a></div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <table>
+            <thead>
+            <tr>
+                <th>Номер заказа</th>
+                <th>Клиент</th>
+                <th>Дата</th>
+                <th>Статус</th>
+                <th>Сумма заказа</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in content.orders %}
+                <tr id_good="{{ good.id_good }}">
+                    <td>{{ order.id_order }}</td>
+                    <td>{{ order.user }}</td>
+                    <td>{{ order.order_date }}</td>
+                    <td>{{ order.order_status }}</td>
+                    <td>{{ order.amount }}</td>
+                    <td><a href="index.php?c=admin&act=order_details&id={{ order.id_order }}">Посмотреть</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

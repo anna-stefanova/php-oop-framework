@@ -1,0 +1,46 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block menu %}
+    <div id="menu" class="menu">
+        <ul>
+            {% for name, href in content.menu %}
+                <li><a href="{{ href }}">{{ name }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <h3>Товары</h3>
+        <p class="message" style="color:red">{{ content.message }}</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Изображение</th>
+                <th>Наименование</th>
+                <th>Цена</th>
+                <th>Категория</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for good in content.goods %}
+                {% set summary = summary + (good.price * good.count) %}
+                <tr id_good="{{ good.id_good }}">
+                    <td><img width="50" height="50" src="./src/images/big/default-placeholder.png" alt=""></td>
+                    <td>{{ good.title }}</td>
+                    <td>{{ good.price }} руб</td>
+                    <td>{{ good.name }}</td>
+                    <td id_good="{{ good.id_good }}">
+                        <a href="index.php?c=admin&act=single&id={{ good.id_good }}">Редактировать товар</a>
+                        <button value="delete">Удалить товар</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

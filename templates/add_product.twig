@@ -1,0 +1,35 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block menu %}
+    <div id="menu" class="menu">
+        <ul>
+            {% for name, href in content.menu %}
+                <li><a href="{{ href }}">{{ name }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+<div id="content">
+    <h3>Добавить товар</h3>
+    <p class="message" style="color:red">{{ content.message }}</p>
+    <form action="index.php?c=admin&act=addProduct" enctype="multipart/form-data" method="post">
+        <label>Название товара: <input type="text" name="title" required></label>
+        <label>Описание товара: <textarea name="description" id="" cols="30" rows="5" required></textarea></label>
+        <label for="">Цена: <input type="text" name="price" required></label>
+        <label>
+            <span>Категория: </span>
+            <select name="id_category" size="1">
+                {% for category in content.categories %}
+                <option value="{{ category.id_category }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        {#<label><input type="file" name="file"></label>#}
+        <p><button type="submit" name="submit">ЗАГРУЗИТЬ</button></p>
+    </form>
+</div>
+{% endblock %}

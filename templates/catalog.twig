@@ -1,0 +1,47 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block menu %}
+    <div id="menu" class="menu">
+        <ul>
+            {% for name, href in content.menu %}
+                <li><a href="{{ href }}">{{ name }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+{% endblock %}
+{% block cart %}
+    <div class="cart"><a href="index.php?c=cart&act=cart">Корзина</a></div>
+{% endblock %}
+{% block content %}
+    <div id="content" class="content">
+        <aside class="sidebar">
+            <section class="categories_list">
+                <h3>Категории товаров</h3>
+                <ul>
+                    <li><a href="index.php?c=good&act=catalog">Все товары</a></li>
+                    {% for category in content.categories %}
+                        <li><a href="index.php?c=good&act=catalog&category={{ category.tag }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </aside>
+        <div class="goods" id="goods">
+            <div class="goods_inner">
+            {% for good in content.goods %}
+                <div class="goods__item">
+                    <img src="./src/images/big/default-placeholder.png" alt="">
+                    <h1><a href="index.php?c=good&act=single&id={{ good.id_good }}">{{ good.title }}</a></h1>
+                    <p>{{ good.description }}</p>
+                    <p class="priceProduct"><strong>{{ good.price }} руб</strong></p>
+                    <p>Категория: {{ good.name }}</p>
+                    <button class="addToCart" id_good="{{ good.id_good }}">Купить</button>
+                </div>
+            {% endfor %}
+            </div>
+            <button class="btn-green-qa" id="more">Загрузить еще</button>
+        </div>
+    </div>
+{% endblock %}

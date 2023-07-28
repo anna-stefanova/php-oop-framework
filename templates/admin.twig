@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block menu %}
+    <div id="menu" class="menu">
+        <ul>
+            {% for name, href in content.menu %}
+                <li><a href="{{ href }}">{{ name }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+        {% if content.name == true %}
+            <p>Добро пожаловать, {{ content.name }} (<a href="index.php?c=user&act=exit">Выйти</a>).</p>
+        {% elseif content.name == false %}
+            <p>Пройдите <a href="index.php?c=user&act=reg">регистрацию</a> или <a href="index.php?c=user&act=auth">авторизуйтесь</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

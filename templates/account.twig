@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block menu %}
+<div id="menu" class="menu">
+    <ul>
+        {% for name, href in content.menu %}
+            <li><a href="{{ href }}">{{ name }}</a></li>
+        {% endfor %}
+
+    </ul>
+</div>
+{% endblock %}
+{% block cart %}
+    <div class="cart"><a href="index.php?c=cart&act=cart">Корзина</a></div>
+{% endblock %}
+{% block content %}
+<div id="content">
+    {% if content.name == true %}
+    <p>Добро пожаловать, {{ content.name }} (не {{ content.name }}? <a href="index.php?c=user&act=exit">Выйти</a>). На главной странице аккаунта вы можете посмотреть ваши недавние заказы, настроить платежный адрес и адрес доставки, а также изменить пароль и основную информацию.</p>
+    {% elseif content.name == false %}
+    <p>Пройдите <a href="index.php?c=user&act=reg">регистрацию</a> или <a href="index.php?c=user&act=auth">авторизуйтесь</a></p>
+    {% endif %}
+</div>
+{% endblock %}

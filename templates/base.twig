@@ -1,0 +1,36 @@
+{#
+* Основной шаблон - шаблон общий для всех страниц нашего сайта
+* ===============
+* две переменные, уникальные для каждой страницы
+* $title - заголовок
+* $content - HTML страницы
+#}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <link rel="stylesheet" type="text/css" media="screen" href="./src/style.css" />
+</head>
+<body>
+<div id="top_header">
+    <h1>{{ title }}</h1>
+</div>
+<header class="header">
+    {% block menu %}{% endblock %}
+    {% block cart %}{% endblock %}
+</header>
+
+<div class="main">
+    {% block content %}{% endblock %}
+
+</div>
+
+
+<div id="footer">
+    Все права защищены. Адрес. Телефон.
+</div>
+<script src="./src/main.js"></script>
+</body>
+</html>

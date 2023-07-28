@@ -1,0 +1,59 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block menu %}
+    <div id="menu" class="menu">
+        <ul>
+            {% for name, href in content.menu %}
+                <li><a href="{{ href }}">{{ name }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <h3>Корзина</h3>
+        <p class="message" style="color:red">{{ content.message }}</p>
+
+        {% set summary = 0 %}
+        <div id="cart">
+            {% if content.goods == true %}
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Общая стоимость</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for good in content.goods %}
+                        {% set summary = summary + (good.price * good.count) %}
+                        <tr id_good="{{ good.id_good }}">
+                            <td>{{ good.title }}</td>
+                            <td>{{ good.price }} руб</td>
+                            <td class="count" id_good="{{ good.id_good }}">
+                                <button value="minus">-</button>
+                                <input id_good="{{ good.id_good }}" type="text" value="{{ good.count }}">
+                                <button value="plus">+</button></td>
+                            <td class="amount">{{ good.common_price }}</td>
+                            <td class="count" id_good="{{ good.id_good }}"><button value="delete">Удалить товар</button></td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3">Итог</td>
+                        <td class="summary">{{ content.amount }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="index.php?c=cart&act=checkout">Оформить заказ</a>
+            {% else %}
+                <a href="index.php?c=good&act=catalog">Вернуться в магазин</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

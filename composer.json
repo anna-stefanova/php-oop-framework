@@ -1,0 +1,21 @@
+{
+  "name": "vendor_name/homework5-framework",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "anna",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "^3",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "ext-dom": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  }
+}
